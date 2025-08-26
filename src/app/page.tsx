@@ -51,7 +51,8 @@ export default function Home() {
                 <Image
                   src="https://i.ibb.co/GJRqfVF/image-removebg-preview-5.png"
                   alt="Rise Gum product packaging"
-                  fill
+                  width={600}
+                  height={600}
                   className="object-contain rounded-lg"
                   data-ai-hint="product packaging"
                   priority
