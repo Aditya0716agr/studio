@@ -13,7 +13,7 @@ import { CheckCircle } from "lucide-react";
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full bg-accent text-accent-foreground hover:bg-accent/90 text-lg py-6">
+    <Button type="submit" disabled={pending} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-lg py-6">
       {pending ? "Submitting..." : "Get Early Access"}
     </Button>
   );

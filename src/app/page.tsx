@@ -9,6 +9,7 @@ import FaqSection from '@/components/sections/faq';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/layout/footer';
 import FloatingCTA from '@/components/floating-cta';
+import { PersonalizationForm } from '@/components/personalization-form';
 
 export default async function Home({ searchParams }: { searchParams: { interests?: string; campus?: string } }) {
   let personalizedContent = null;
@@ -86,6 +87,7 @@ export default async function Home({ searchParams }: { searchParams: { interests
       <Header />
       <main className="flex-1">
         <HeroSection headline={headline} />
+        <PersonalizationForm currentInterests={interests} currentCampus={campus} />
         <BenefitsSection benefits={benefits} />
         <ScienceSection />
         <TestimonialsSection testimonials={testimonials} />

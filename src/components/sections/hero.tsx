@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -17,7 +18,7 @@ export default function HeroSection({ headline }: { headline: string }) {
        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
        <div className="container mx-auto px-6 z-10">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
           <AnimatedWrapper>
             <div className="text-center md:text-left">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-headline text-foreground !leading-tight tracking-tighter">
@@ -36,27 +37,15 @@ export default function HeroSection({ headline }: { headline: string }) {
               </div>
             </div>
           </AnimatedWrapper>
-          <AnimatedWrapper delay="delay-200" className="relative h-80 md:h-full">
-            <div className="absolute -bottom-16 md:-bottom-20 right-0 w-64 h-64 md:w-96 md:h-96">
-                <Image
-                src="https://picsum.photos/400/400"
-                alt="Young student in motion"
-                fill
-                className="object-contain"
-                data-ai-hint="student motion"
-                priority
-                />
-            </div>
-            <div className="absolute -top-10 md:top-1/4 left-0 w-48 h-48 md:w-64 md:h-64">
-                <Image
-                    src="https://picsum.photos/300/300"
-                    alt="Rise Gum product pack"
-                    fill
-                    className="object-contain -rotate-12 transform-gpu"
-                    data-ai-hint="product pack"
-                    priority
-                />
-            </div>
+          <AnimatedWrapper delay="delay-200" className="relative h-96 md:h-[500px]">
+            <Image
+              src="https://storage.googleapis.com/stey-tmp/rise-gum-prod.png"
+              alt="Rise Gum product packaging"
+              fill
+              className="object-contain"
+              data-ai-hint="product packaging"
+              priority
+            />
           </AnimatedWrapper>
         </div>
       </div>

@@ -19,7 +19,7 @@ export default function ScienceSection() {
         </AnimatedWrapper>
 
         <AnimatedWrapper delay="delay-200">
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-4">
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-5 items-center gap-8 md:gap-4">
             {/* Step 1 */}
             <div className="flex flex-col items-center text-center">
               <div className="p-4 bg-primary/10 rounded-full mb-4">
@@ -32,7 +32,7 @@ export default function ScienceSection() {
             </div>
 
             {/* Arrow/Diagram */}
-            <div className="relative h-24 flex items-center justify-center">
+            <div className="relative h-24 md:h-auto md:w-full flex items-center justify-center -rotate-90 md:rotate-0">
                 <div className="w-full h-1 bg-border/50 rounded-full"></div>
                 <div className="absolute w-full h-1 bg-primary rounded-full animate-flow"></div>
             </div>
@@ -50,13 +50,13 @@ export default function ScienceSection() {
             </div>
             
             {/* Arrow/Diagram */}
-            <div className="relative h-24 flex items-center justify-center md:col-start-2">
+            <div className="relative h-24 md:h-auto md:w-full flex items-center justify-center -rotate-90 md:rotate-0">
                 <div className="w-full h-1 bg-border/50 rounded-full"></div>
                 <div className="absolute w-full h-1 bg-primary rounded-full animate-flow" style={{animationDelay: '1s'}}></div>
             </div>
 
             {/* Step 3 */}
-            <div className="flex flex-col items-center text-center md:col-start-3">
+            <div className="flex flex-col items-center text-center">
               <div className="p-4 bg-primary/10 rounded-full mb-4">
                 <BrainCircuit className="h-10 w-10 text-primary" />
               </div>

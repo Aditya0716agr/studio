@@ -14,10 +14,10 @@ type Testimonial = {
 };
 
 const pressLogos = [
-  { name: "TechCrunch", logo: "https://picsum.photos/150/50?grayscale&random=10" },
-  { name: "YourStory", logo: "https://picsum.photos/150/50?grayscale&random=11" },
-  { name: "Inc42", logo: "https://picsum.photos/150/50?grayscale&random=12" },
-  { name: "The Economic Times", logo: "https://picsum.photos/150/50?grayscale&random=13" },
+  { name: "TechCrunch", logo: "https://storage.googleapis.com/stey-tmp/techcrunch-logo.svg" },
+  { name: "YourStory", logo: "https://storage.googleapis.com/stey-tmp/yourstory-logo.svg" },
+  { name: "Inc42", logo: "https://storage.googleapis.com/stey-tmp/inc42-logo.svg" },
+  { name: "The Economic Times", logo: "https://storage.googleapis.com/stey-tmp/economic-times-logo.svg" },
 ];
 
 export default function TestimonialsSection({ testimonials }: { testimonials: string }) {
@@ -44,7 +44,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: st
                 <CardContent className="pt-6">
                   <div className="flex items-center mb-4">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-primary fill-primary" />
+                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>
                   <p className="text-muted-foreground italic">&quot;{testimonial.text}&quot;</p>
@@ -79,7 +79,7 @@ export default function TestimonialsSection({ testimonials }: { testimonials: st
                             alt={press.name}
                             width={130}
                             height={40}
-                            className="opacity-60 hover:opacity-100 transition-opacity"
+                            className="opacity-60 hover:opacity-100 transition-opacity filter invert"
                             data-ai-hint="company logo"
                         />
                     ))}

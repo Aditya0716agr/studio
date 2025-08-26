@@ -39,7 +39,7 @@ export default function FloatingCTA() {
       <Button
         size="lg"
         onClick={scrollToContact}
-        className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-2xl rounded-full"
+        className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-2xl rounded-full"
       >
         Try Early Access
         <ArrowUp className="ml-2 h-4 w-4 -rotate-45" />

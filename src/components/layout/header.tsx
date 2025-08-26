@@ -30,7 +30,19 @@ export default function Header() {
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+        // Calculate the position of the element
+        const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+        // The header height is 80px, let's add some padding
+        const offsetPosition = elementPosition - 100;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    }
     setIsMobileMenuOpen(false);
   };
 
@@ -55,7 +67,7 @@ export default function Header() {
               </Link>
             </Button>
           ))}
-           <Button onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })} className="ml-4 bg-accent text-accent-foreground hover:bg-accent/90">
+           <Button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="ml-4 bg-primary text-primary-foreground hover:bg-primary/90">
             Try Early Access
           </Button>
         </nav>
@@ -93,9 +105,9 @@ export default function Header() {
                   ))}
                 </nav>
                  <Button size="lg" onClick={() => {
-                   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                    setIsMobileMenuOpen(false);
-                 }} className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                 }} className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                   Try Early Access
                 </Button>
               </div>

@@ -12,7 +12,7 @@ export default function Logo({ className }: { className?: string }) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="text-accent"
+        className="text-primary"
       >
         <path d="M5 12h14" />
         <path d="M12 5v14" />

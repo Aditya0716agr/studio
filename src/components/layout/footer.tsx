@@ -46,7 +46,7 @@ export default function Footer() {
             <p className="text-muted-foreground">Find us at a campus store near you.</p>
             <div className="w-full h-48 rounded-lg overflow-hidden border border-border">
               <Image
-                src="https://picsum.photos/400/200"
+                src="https://picsum.photos/400/200?grayscale"
                 alt="Campus availability map"
                 width={400}
                 height={200}
