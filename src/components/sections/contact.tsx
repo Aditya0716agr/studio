@@ -1,7 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from "react-dom";
-import { useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef } from "react";
+import { useFormStatus } from "react-dom";
 import { addToWaitlist } from "@/actions/waitlist";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,7 +21,7 @@ function SubmitButton() {
 
 export default function ContactSection() {
   const initialState = { message: null, errors: null, success: false };
-  const [state, dispatch] = useFormState(addToWaitlist, initialState);
+  const [state, dispatch] = useActionState(addToWaitlist, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
