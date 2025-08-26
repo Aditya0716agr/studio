@@ -33,12 +33,13 @@ async function appendToSheet(data: { name: string; email: string; campus?: strin
   const doc = new GoogleSpreadsheet(spreadsheetId, serviceAccountAuth);
   
   await doc.loadInfo();
-  const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME || '';
-  let sheet = doc.sheetsByTitle[sheetName];
+  const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME;
+  let sheet = sheetName ? doc.sheetsByTitle[sheetName] : doc.sheetsByIndex[0];
 
   if (!sheet) {
-    sheet = doc.sheetsByIndex[0];
-    if (!sheet) {
+    if (sheetName) {
+        throw new Error(`Sheet with name "${sheetName}" not found. Please check your GOOGLE_SHEETS_SHEET_NAME environment variable.`);
+    } else {
         throw new Error(`No sheets found in the spreadsheet. Please add a sheet to your Google Sheet.`);
     }
   }
