@@ -49,7 +49,7 @@ export default function Home() {
             <div className="relative">
               <AnimatedWrapper>
                 <Image
-                  src="https://picsum.photos/600/600"
+                  src="https://storage.googleapis.com/stey-tmp/rise-gum-prod.png"
                   alt="Rise Gum product packaging"
                   width={600}
                   height={600}
