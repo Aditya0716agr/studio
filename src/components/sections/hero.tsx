@@ -37,13 +37,13 @@ export default function HeroSection({ headline }: { headline: string }) {
               </div>
             </div>
           </AnimatedWrapper>
-          <AnimatedWrapper delay="delay-200" className="relative h-96 md:h-[500px] flex items-center justify-center">
+          <AnimatedWrapper delay="delay-200" className="relative h-96 md:h-auto md:min-h-[500px] flex items-center justify-center">
             <Image
               src="https://storage.googleapis.com/stey-tmp/rise-gum-prod.png"
               alt="Rise Gum product packaging"
               width={500}
               height={500}
-              className="object-contain"
+              className="object-contain w-full h-auto"
               data-ai-hint="product packaging"
               priority
             />

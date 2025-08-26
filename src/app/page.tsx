@@ -7,8 +7,21 @@ import FaqSection from '@/components/sections/faq';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/layout/footer';
 import FloatingCTA from '@/components/floating-cta';
+import { personalizeSiteContent } from '@/ai/flows/personalize-site-content';
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { interests?: string; campus?: string };
+}) {
+  let personalizedContent = null;
+  if (searchParams.interests && searchParams.campus) {
+    personalizedContent = await personalizeSiteContent({
+      userInterests: searchParams.interests,
+      campusLocation: searchParams.campus,
+    });
+  }
+
   const defaultContent = {
     headline: "Energize Your Day, Instantly.",
     benefits: JSON.stringify([
@@ -55,9 +68,10 @@ export default async function Home() {
     ]),
   };
 
-  const headline = defaultContent.headline;
-  const benefits = defaultContent.benefits;
-  const testimonials = defaultContent.testimonials;
+  const headline = personalizedContent?.personalizedHeadline || defaultContent.headline;
+  const benefits = personalizedContent?.personalizedBenefits ? JSON.stringify(JSON.parse(personalizedContent.personalizedBenefits)) : defaultContent.benefits;
+  const testimonials = personalizedContent?.personalizedTestimonials ? JSON.stringify(JSON.parse(personalizedContent.personalizedTestimonials)) : defaultContent.testimonials;
+
 
   return (
     <div className="flex min-h-screen flex-col bg-background font-body">
