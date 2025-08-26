@@ -11,7 +11,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 export default function Home() {
   const launchDate = new Date();
-  launchDate.setDate(launchDate.getDate() + 7);
+  launchDate.setDate(launchDate.getDate() + 30);
 
   const features = [
     { text: 'Zero sugar, zero calories' },
