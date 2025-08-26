@@ -12,24 +12,25 @@ const waitlistSchema = z.object({
 });
 
 async function appendToSheet(data: { name: string; email: string; campus?: string }) {
-  if (
-    !process.env.GOOGLE_SHEETS_CLIENT_EMAIL ||
-    !process.env.GOOGLE_SHEETS_PRIVATE_KEY ||
-    !process.env.GOOGLE_SHEETS_SPREADSHEET_ID
-  ) {
-    throw new Error("Missing Google Sheets credentials in environment variables.");
+  const clientEmail = process.env.GOOGLE_SHEETS_CLIENT_EMAIL;
+  const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY;
+  const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+
+  if (!clientEmail || !privateKey || !spreadsheetId) {
+    let missingVars = [];
+    if (!clientEmail) missingVars.push("GOOGLE_SHEETS_CLIENT_EMAIL");
+    if (!privateKey) missingVars.push("GOOGLE_SHEETS_PRIVATE_KEY");
+    if (!spreadsheetId) missingVars.push("GOOGLE_SHEETS_SPREADSHEET_ID");
+    throw new Error(`Missing Google Sheets credentials in environment variables: ${missingVars.join(", ")}. Please check your .env file.`);
   }
 
   const serviceAccountAuth = new JWT({
-    email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-    key: process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    email: clientEmail,
+    key: privateKey.replace(/\\n/g, '\n'),
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
   });
 
-  const doc = new GoogleSpreadsheet(
-    process.env.GOOGLE_SHEETS_SPREADSHEET_ID,
-    serviceAccountAuth
-  );
+  const doc = new GoogleSpreadsheet(spreadsheetId, serviceAccountAuth);
   
   await doc.loadInfo();
   const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME || '';
