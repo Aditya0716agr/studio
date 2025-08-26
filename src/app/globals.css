@@ -64,26 +64,11 @@ body {
   }
 }
 
-@keyframes background-pan {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .animated-gradient {
-  background: linear-gradient(
-    90deg,
-    hsl(var(--background)),
+  background: radial-gradient(
+    circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
     hsl(var(--secondary)),
-    hsl(var(--background)),
-    hsl(var(--secondary))
+    hsl(var(--background)) 40%
   );
-  background-size: 400% 400%;
-  animation: background-pan 30s ease-in-out infinite;
+  transition: background 0.2s ease-out;
 }
