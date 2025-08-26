@@ -47,12 +47,6 @@ export default function Home() {
             </div>
             <div className="relative">
               <AnimatedWrapper>
-                <div
-                  className="absolute top-0 left-0 w-24 h-24 bg-repeat bg-center opacity-10"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23000'/%3E%3C/svg%3E")`,
-                  }}
-                ></div>
                 <Image
                   src="https://storage.googleapis.com/stey-tmp/rise-gum-prod.png"
                   alt="Rise Gum product packaging"
@@ -62,12 +56,6 @@ export default function Home() {
                   data-ai-hint="product packaging"
                   priority
                 />
-                <div
-                  className="absolute bottom-0 right-0 w-24 h-24 bg-repeat bg-center opacity-10"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23000'/%3E%3C/svg%3E")`,
-                  }}
-                ></div>
               </AnimatedWrapper>
             </div>
           </div>
