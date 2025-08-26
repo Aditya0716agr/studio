@@ -46,14 +46,13 @@ export default function Home() {
                 </WaitlistSheet>
               </AnimatedWrapper>
             </div>
-            <div className="relative">
+            <div className="relative aspect-square">
               <AnimatedWrapper>
                 <Image
                   src="https://i.ibb.co/GJRqfVF/image-removebg-preview-5.png"
                   alt="Rise Gum product packaging"
-                  width={600}
-                  height={600}
-                  className="object-cover w-full h-auto rounded-lg"
+                  fill
+                  className="object-contain rounded-lg"
                   data-ai-hint="product packaging"
                   priority
                 />
