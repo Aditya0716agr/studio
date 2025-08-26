@@ -1,5 +1,3 @@
-import { personalizeSiteContent } from '@/ai/flows/personalize-site-content';
-
 import Header from '@/components/layout/header';
 import HeroSection from '@/components/sections/hero';
 import BenefitsSection from '@/components/sections/benefits';
@@ -9,26 +7,8 @@ import FaqSection from '@/components/sections/faq';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/layout/footer';
 import FloatingCTA from '@/components/floating-cta';
-import { PersonalizationForm } from '@/components/personalization-form';
 
-export default async function Home({ searchParams }: { searchParams: { interests?: string; campus?: string } }) {
-  let personalizedContent = null;
-  const interests = searchParams.interests;
-  const campus = searchParams.campus;
-
-  if (interests && campus) {
-    try {
-      personalizedContent = await personalizeSiteContent({
-        userInterests: interests,
-        campusLocation: campus,
-      });
-    } catch (error) {
-      console.error("Failed to fetch personalized content:", error);
-      // Fallback to default content if AI call fails
-      personalizedContent = null;
-    }
-  }
-
+export default async function Home() {
   const defaultContent = {
     headline: "Energize Your Day, Instantly.",
     benefits: JSON.stringify([
@@ -75,10 +55,7 @@ export default async function Home({ searchParams }: { searchParams: { interests
     ]),
   };
 
-  // The AI output for benefits and testimonials is a single string.
-  // We can't reliably parse it into a structured format.
-  // For this reason, we will only use the personalized headline and pass the default structured data for other sections.
-  const headline = personalizedContent?.personalizedHeadline || defaultContent.headline;
+  const headline = defaultContent.headline;
   const benefits = defaultContent.benefits;
   const testimonials = defaultContent.testimonials;
 
@@ -87,7 +64,6 @@ export default async function Home({ searchParams }: { searchParams: { interests
       <Header />
       <main className="flex-1">
         <HeroSection headline={headline} />
-        <PersonalizationForm currentInterests={interests} currentCampus={campus} />
         <BenefitsSection benefits={benefits} />
         <ScienceSection />
         <TestimonialsSection testimonials={testimonials} />
