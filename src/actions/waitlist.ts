@@ -23,23 +23,17 @@ const doc = new GoogleSpreadsheet(
 );
 
 async function appendToSheet(data: { name: string; email: string; campus?: string }) {
-  try {
-    await doc.loadInfo();
-    const sheet = doc.sheetsByTitle[process.env.GOOGLE_SHEETS_SHEET_NAME!];
-    if (!sheet) {
-      throw new Error(`Sheet "${process.env.GOOGLE_SHEETS_SHEET_NAME}" not found.`);
-    }
-    await sheet.addRow({
-      Name: data.name,
-      Email: data.email,
-      Campus: data.campus || "",
-      SubmittedAt: new Date().toISOString(),
-    });
-  } catch (error) {
-    console.error("Error writing to Google Sheet:", error);
-    // Silently fail for the user, but log the error for the developer.
-    // You might want to add more robust error handling here.
+  await doc.loadInfo();
+  const sheet = doc.sheetsByTitle[process.env.GOOGLE_SHEETS_SHEET_NAME!];
+  if (!sheet) {
+    throw new Error(`Sheet "${process.env.GOOGLE_SHEETS_SHEET_NAME}" not found.`);
   }
+  await sheet.addRow({
+    Name: data.name,
+    Email: data.email,
+    Campus: data.campus || "",
+    SubmittedAt: new Date().toISOString(),
+  });
 }
 
 export async function addToWaitlist(prevState: any, formData: FormData) {
@@ -65,9 +59,10 @@ export async function addToWaitlist(prevState: any, formData: FormData) {
       errors: null,
       success: true,
     };
-  } catch (error) {
+  } catch (error: any) {
+    console.error("Error writing to Google Sheet:", error);
     return {
-      message: "An unexpected error occurred. Please try again later.",
+      message: "An unexpected error occurred while saving your information. Please check your setup and try again.",
       errors: null,
       success: false,
     };
