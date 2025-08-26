@@ -49,7 +49,7 @@ export default function Home() {
             <div className="relative">
               <AnimatedWrapper>
                 <Image
-                  src="/product-image.png"
+                  src="https://i.ibb.co/GJRqfVF/image-removebg-preview-5.png"
                   alt="Rise Gum product packaging"
                   width={600}
                   height={600}
