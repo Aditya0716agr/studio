@@ -60,7 +60,7 @@ export default function Home() {
               <div className="relative aspect-square">
                 <AnimatedWrapper>
                   <Image
-                    src="https://picsum.photos/600/600"
+                    src="https://i.ibb.co/6y4pNBW/image.png"
                     alt="Rise Gum product packaging"
                     width={600}
                     height={600}
