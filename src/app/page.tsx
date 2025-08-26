@@ -49,12 +49,12 @@ export default function Home() {
             <div className="relative">
               <AnimatedWrapper>
                 <Image
-                  src="https://picsum.photos/600/600"
-                  alt="Rise Gum product packaging"
+                  src="https://picsum.photos/seed/scenic/600/600"
+                  alt="Scenic landscape"
                   width={600}
                   height={600}
-                  className="object-contain w-full h-auto rounded-lg"
-                  data-ai-hint="product packaging"
+                  className="object-cover w-full h-auto rounded-lg"
+                  data-ai-hint="landscape morning"
                   priority
                 />
               </AnimatedWrapper>
