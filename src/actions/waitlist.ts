@@ -32,11 +32,14 @@ async function appendToSheet(data: { name: string; email: string; campus?: strin
   );
   
   await doc.loadInfo();
-  const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME || 'Sheet1';
-  const sheet = doc.sheetsByTitle[sheetName];
+  const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME || '';
+  let sheet = doc.sheetsByTitle[sheetName];
 
   if (!sheet) {
-    throw new Error(`Sheet "${sheetName}" not found. Please check your GOOGLE_SHEETS_SHEET_NAME environment variable.`);
+    sheet = doc.sheetsByIndex[0];
+    if (!sheet) {
+        throw new Error(`No sheets found in the spreadsheet. Please add a sheet to your Google Sheet.`);
+    }
   }
 
   await sheet.addRow({
