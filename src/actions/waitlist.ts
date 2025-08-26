@@ -11,23 +11,34 @@ const waitlistSchema = z.object({
   campus: z.string().optional(),
 });
 
-const serviceAccountAuth = new JWT({
-  email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-  key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-});
-
-const doc = new GoogleSpreadsheet(
-  process.env.GOOGLE_SHEETS_SPREADSHEET_ID!,
-  serviceAccountAuth
-);
-
 async function appendToSheet(data: { name: string; email: string; campus?: string }) {
-  await doc.loadInfo();
-  const sheet = doc.sheetsByTitle[process.env.GOOGLE_SHEETS_SHEET_NAME!];
-  if (!sheet) {
-    throw new Error(`Sheet "${process.env.GOOGLE_SHEETS_SHEET_NAME}" not found.`);
+  if (
+    !process.env.GOOGLE_SHEETS_CLIENT_EMAIL ||
+    !process.env.GOOGLE_SHEETS_PRIVATE_KEY ||
+    !process.env.GOOGLE_SHEETS_SPREADSHEET_ID
+  ) {
+    throw new Error("Missing Google Sheets credentials in environment variables.");
   }
+
+  const serviceAccountAuth = new JWT({
+    email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+    key: process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
+
+  const doc = new GoogleSpreadsheet(
+    process.env.GOOGLE_SHEETS_SPREADSHEET_ID,
+    serviceAccountAuth
+  );
+  
+  await doc.loadInfo();
+  const sheetName = process.env.GOOGLE_SHEETS_SHEET_NAME || 'Sheet1';
+  const sheet = doc.sheetsByTitle[sheetName];
+
+  if (!sheet) {
+    throw new Error(`Sheet "${sheetName}" not found. Please check your GOOGLE_SHEETS_SHEET_NAME environment variable.`);
+  }
+
   await sheet.addRow({
     Name: data.name,
     Email: data.email,
@@ -47,6 +58,7 @@ export async function addToWaitlist(prevState: any, formData: FormData) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Please correct the errors and try again.",
+      success: false,
     };
   }
 
@@ -60,9 +72,9 @@ export async function addToWaitlist(prevState: any, formData: FormData) {
       success: true,
     };
   } catch (error: any) {
-    console.error("Error writing to Google Sheet:", error);
+    console.error("Error writing to Google Sheet:", error.message);
     return {
-      message: "An unexpected error occurred while saving your information. Please check your setup and try again.",
+      message: `An unexpected error occurred: ${error.message}. Please check your Google Sheets setup and credentials.`,
       errors: null,
       success: false,
     };
