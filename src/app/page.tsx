@@ -22,7 +22,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground font-sans">
+    <div className="flex flex-col min-h-screen bg-background text-foreground font-sans animated-gradient">
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
@@ -75,7 +75,7 @@ export default function Home() {
         </section>
 
         {/* Problem & Solution Section */}
-        <section className="py-12 lg:py-24 bg-secondary">
+        <section className="py-12 lg:py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <AnimatedWrapper className="lg:col-span-1">
@@ -90,21 +90,21 @@ export default function Home() {
               </AnimatedWrapper>
               <AnimatedWrapper delay="delay-200" className="lg:col-span-1">
                 <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6">
-                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background">
+                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background/50 backdrop-blur-sm">
                         <Leaf className="h-8 w-8 text-primary" />
                         <div>
                             <h3 className="text-xl font-semibold">Sugar-Free</h3>
                             <p className="text-muted-foreground text-sm">Clean energy without the crash.</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background">
+                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background/50 backdrop-blur-sm">
                         <Zap className="h-8 w-8 text-primary" />
                         <div>
                             <h3 className="text-xl font-semibold">Fast-Acting</h3>
                              <p className="text-muted-foreground text-sm">Feel the boost in minutes.</p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background">
+                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background/50 backdrop-blur-sm">
                         <Pocket className="h-8 w-8 text-primary" />
                         <div>
                             <h3 className="text-xl font-semibold">Pocket-Ready</h3>
@@ -154,7 +154,7 @@ export default function Home() {
         </section>
 
         {/* How It Works Section */}
-        <section className="py-12 lg:py-24 bg-secondary">
+        <section className="py-12 lg:py-24 bg-secondary/50">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <AnimatedWrapper className="lg:col-span-1">
@@ -166,7 +166,7 @@ export default function Home() {
                     Chewing gum allows for buccal absorption, a fancy way of saying caffeine gets into your system faster through the tissues in your mouth. This means a quicker, more efficient boost compared to traditional drinks.
                   </p>
                   <div className="mt-4">
-                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background">
+                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background/50 backdrop-blur-sm">
                        <Zap className="h-8 w-8 text-primary" />
                        <div>
                          <h4 className="font-semibold">Real Scenario:</h4>
