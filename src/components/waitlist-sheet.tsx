@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useEffect, useRef, useState, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import {
   Sheet,
   SheetContent,
@@ -40,7 +40,7 @@ function SubmitButton() {
 export function WaitlistSheet({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const initialState = { message: null, errors: null, success: false };
-  const [state, dispatch] = useFormState(addToWaitlist, initialState);
+  const [state, dispatch] = useActionState(addToWaitlist, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
