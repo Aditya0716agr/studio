@@ -22,7 +22,7 @@ const doc = new GoogleSpreadsheet(
   serviceAccountAuth
 );
 
-async functionappendToSheet(data: { name: string; email: string; campus?: string }) {
+async function appendToSheet(data: { name: string; email: string; campus?: string }) {
   try {
     await doc.loadInfo();
     const sheet = doc.sheetsByTitle[process.env.GOOGLE_SHEETS_SHEET_NAME!];

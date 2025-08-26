@@ -49,11 +49,11 @@ export default function Home() {
             <div className="relative">
               <AnimatedWrapper>
                 <Image
-                  src="https://storage.googleapis.com/stey-tmp/rise-gum-prod.png"
+                  src="https://picsum.photos/600/600"
                   alt="Rise Gum product packaging"
                   width={600}
                   height={600}
-                  className="object-contain w-full h-auto"
+                  className="object-contain w-full h-auto rounded-lg"
                   data-ai-hint="product packaging"
                   priority
                 />
