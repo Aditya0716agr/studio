@@ -1,91 +1,50 @@
 import Header from '@/components/layout/header';
-import HeroSection from '@/components/sections/hero';
-import BenefitsSection from '@/components/sections/benefits';
-import ScienceSection from '@/components/sections/science';
-import TestimonialsSection from '@/components/sections/testimonials';
-import FaqSection from '@/components/sections/faq';
-import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/layout/footer';
-import FloatingCTA from '@/components/floating-cta';
-import { personalizeSiteContent } from '@/ai/flows/personalize-site-content';
+import Image from 'next/image';
+import { Countdown } from '@/components/countdown';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { interests?: string; campus?: string };
-}) {
-  let personalizedContent = null;
-  if (searchParams.interests && searchParams.campus) {
-    personalizedContent = await personalizeSiteContent({
-      userInterests: searchParams.interests,
-      campusLocation: searchParams.campus,
-    });
-  }
-
-  const defaultContent = {
-    headline: "Energize Your Day, Instantly.",
-    benefits: JSON.stringify([
-      {
-        title: "Fast-Acting",
-        description: "Feel the kick in minutes, not hours. Perfect for a pre-lecture boost or a mid-day slump.",
-        icon: "Zap",
-      },
-      {
-        title: "Sugar-Free",
-        description: "All the energy, none of the crash. Our gum is sweetened with natural, tooth-friendly xylitol.",
-        icon: "Leaf",
-      },
-      {
-        title: "Pocket-Ready",
-        description: "Your secret weapon for focus and energy, ready whenever you are. Fits perfectly in your pocket or bag.",
-        icon: "Pocket",
-      },
-      {
-        title: "Unique Flavors",
-        description: "Crafted with refreshing mint and fruit notes, designed for the modern Indian palate.",
-        icon: "Sparkles",
-      },
-    ]),
-    testimonials: JSON.stringify([
-      {
-        name: "Rohan S.",
-        role: "Student, IIT Delhi",
-        text: "Rise Gum is a lifesaver during late-night study sessions. It keeps me sharp and focused without the jitters of coffee.",
-        avatar: "https://picsum.photos/100/100?random=1",
-      },
-      {
-        name: "@GameProAnkit",
-        role: "Gaming Influencer",
-        text: "The focus it gives me is unreal. Perfect for intense gaming sessions when every millisecond counts. A must-have for any serious gamer.",
-        avatar: "https://picsum.photos/100/100?random=2",
-      },
-      {
-        name: "Priya M.",
-        role: "Fitness Enthusiast",
-        text: "Finally, a healthy energy boost that fits my active lifestyle. I pop a piece before my workout for that extra edge.",
-        avatar: "https://picsum.photos/100/100?random=3",
-      },
-    ]),
-  };
-
-  const headline = personalizedContent?.personalizedHeadline || defaultContent.headline;
-  const benefits = personalizedContent?.personalizedBenefits ? JSON.stringify(JSON.parse(personalizedContent.personalizedBenefits)) : defaultContent.benefits;
-  const testimonials = personalizedContent?.personalizedTestimonials ? JSON.stringify(JSON.parse(personalizedContent.personalizedTestimonials)) : defaultContent.testimonials;
-
+export default function Home() {
+  const launchDate = new Date();
+  launchDate.setDate(launchDate.getDate() + 7);
 
   return (
-    <div className="flex min-h-screen flex-col bg-background font-body">
+    <div className="flex flex-col min-h-screen bg-background text-foreground font-sans">
       <Header />
-      <main className="flex-1">
-        <HeroSection headline={headline} />
-        <BenefitsSection benefits={benefits} />
-        <ScienceSection />
-        <TestimonialsSection testimonials={testimonials} />
-        <FaqSection />
-        <ContactSection />
+      <main className="flex-1 flex items-center">
+        <div className="container mx-auto px-6 py-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="flex flex-col space-y-6">
+              <div className="flex items-center gap-2 text-sm font-semibold tracking-wider uppercase text-muted-foreground">
+                <ArrowRight className="w-4 h-4" />
+                <span>Coming Soon</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tighter !leading-tight">
+                Our new Product will be <span className="bg-foreground text-background px-2">launch soon.</span>
+              </h1>
+              <p className="text-muted-foreground max-w-md">
+                Shop RiseGum for everything to fit your modern lifestyle - from instant energy to enhanced focus, with Free Shipping on most items.
+              </p>
+              <Countdown date={launchDate.toISOString()} />
+            </div>
+            <div className="relative">
+               <div className="absolute top-0 left-0 w-24 h-24 bg-repeat bg-center opacity-10" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23000'/%3E%3C/svg%3E")`}}></div>
+                <Image
+                  src="https://storage.googleapis.com/stey-tmp/rise-gum-prod.png"
+                  alt="Rise Gum product packaging"
+                  width={600}
+                  height={600}
+                  className="object-contain w-full h-auto"
+                  data-ai-hint="product packaging"
+                  priority
+                />
+                 <div className="absolute bottom-0 right-0 w-24 h-24 bg-repeat bg-center opacity-10" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23000'/%3E%3C/svg%3E")`}}></div>
+            </div>
+          </div>
+        </div>
       </main>
       <Footer />
-      <FloatingCTA />
     </div>
   );
 }
