@@ -36,24 +36,15 @@ export function Countdown({ date }: CountdownProps) {
     { value: timeLeft.days, label: 'Days' },
     { value: timeLeft.hours, label: 'Hours' },
     { value: timeLeft.minutes, label: 'Minutes' },
-    { value: timeLeft.seconds, label: 'Second' },
+    { value: timeLeft.seconds, label: 'Seconds' },
   ];
 
   return (
-    <div className="flex items-center gap-4">
-      {timeUnits.map((unit, index) => (
-        <div key={unit.label} className="flex items-center gap-4">
-          <div className="flex flex-col items-center justify-center p-4 border rounded-lg w-24 h-24">
-            <span className="text-4xl font-bold">{String(unit.value).padStart(2, '0')}</span>
+    <div className="flex items-center gap-4 text-center">
+      {timeUnits.map((unit) => (
+        <div key={unit.label} className="flex flex-col items-center justify-center p-4 border rounded-lg w-24 h-24 bg-secondary">
+            <span className="text-3xl font-bold">{String(unit.value).padStart(2, '0')}</span>
             <span className="text-sm text-muted-foreground">{unit.label}</span>
-          </div>
-          {/* This is a decorative separator, it does not show up on the last item */}
-          {index < timeUnits.length - 1 && (
-            <div className="hidden sm:flex flex-col gap-1.5">
-              <div className="w-1.5 h-1.5 bg-border rounded-full" />
-              <div className="w-1.5 h-1.5 bg-border rounded-full" />
-            </div>
-          )}
         </div>
       ))}
     </div>

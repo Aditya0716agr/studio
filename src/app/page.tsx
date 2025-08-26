@@ -76,68 +76,80 @@ export default function Home() {
 
         {/* Problem & Solution Section */}
         <section className="py-12 lg:py-24 bg-secondary">
-          <div className="container mx-auto px-6 text-center">
-            <AnimatedWrapper>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Tired of unhealthy energy drinks?
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                Rise Gum delivers portable, healthy energy, precisely when you need it.
-              </p>
-            </AnimatedWrapper>
-            <AnimatedWrapper delay="delay-200">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div className="flex flex-col items-center space-y-3">
-                  <div className="p-4 bg-background rounded-full border">
-                    <Leaf className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Sugar-Free</h3>
+          <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <AnimatedWrapper className="lg:col-span-1">
+                <div className="flex flex-col space-y-4">
+                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                    Tired of Unhealthy Energy Drinks?
+                  </h2>
+                  <p className="text-lg text-muted-foreground">
+                    Rise Gum delivers portable, healthy energy, precisely when you need it. For modern students and professionals, every minute counts. Rise Gum is the ultimate life-hack, providing a clean, instant energy boost to conquer exams, crush deadlines, and stay sharp without the jitters or crash of sugary drinks.
+                  </p>
                 </div>
-                <div className="flex flex-col items-center space-y-3">
-                  <div className="p-4 bg-background rounded-full border">
-                    <Zap className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Fast-Acting</h3>
+              </AnimatedWrapper>
+              <AnimatedWrapper delay="delay-200" className="lg:col-span-1">
+                <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6">
+                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background">
+                        <Leaf className="h-8 w-8 text-primary" />
+                        <div>
+                            <h3 className="text-xl font-semibold">Sugar-Free</h3>
+                            <p className="text-muted-foreground text-sm">Clean energy without the crash.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background">
+                        <Zap className="h-8 w-8 text-primary" />
+                        <div>
+                            <h3 className="text-xl font-semibold">Fast-Acting</h3>
+                             <p className="text-muted-foreground text-sm">Feel the boost in minutes.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4 p-4 border rounded-lg bg-background">
+                        <Pocket className="h-8 w-8 text-primary" />
+                        <div>
+                            <h3 className="text-xl font-semibold">Pocket-Ready</h3>
+                             <p className="text-muted-foreground text-sm">Energy that goes where you go.</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex flex-col items-center space-y-3">
-                  <div className="p-4 bg-background rounded-full border">
-                    <Pocket className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">Pocket-Ready</h3>
-                </div>
-              </div>
-            </AnimatedWrapper>
-            <AnimatedWrapper delay="delay-400">
-              <p className="mt-12 max-w-3xl mx-auto text-muted-foreground">
-                For modern students and professionals, every minute counts. Rise Gum is the ultimate life-hack, providing a clean, instant energy boost to conquer exams, crush deadlines, and stay sharp without the jitters or crash of sugary drinks.
-              </p>
-            </AnimatedWrapper>
+              </AnimatedWrapper>
+            </div>
           </div>
         </section>
 
         {/* Product Features & Benefits Section */}
         <section className="py-12 lg:py-24">
           <div className="container mx-auto px-6">
-            <AnimatedWrapper className="text-center">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                The Smarter Way to Energize
-              </h2>
-              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                Everything you need for a clean boost, nothing you don&apos;t.
-              </p>
-            </AnimatedWrapper>
-            <AnimatedWrapper delay="delay-200">
-              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((feature, index) => (
-                  <Card key={index}>
-                    <CardContent className="p-6 flex items-center gap-4">
-                      <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0" />
-                      <span className="font-medium">{feature.text}</span>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </AnimatedWrapper>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <AnimatedWrapper className="lg:col-span-1">
+                    <Image
+                        src="https://picsum.photos/600/600"
+                        alt="Diagram of caffeine absorption"
+                        width={600}
+                        height={600}
+                        className="rounded-lg object-cover w-full h-full"
+                        data-ai-hint="lifestyle studying"
+                    />
+                </AnimatedWrapper>
+                 <AnimatedWrapper delay="delay-200" className="lg:col-span-1">
+                    <div className="flex flex-col space-y-4">
+                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                           The Smarter Way to Energize
+                         </h2>
+                         <p className="text-lg text-muted-foreground">
+                            Everything you need for a clean boost, nothing you don&apos;t.
+                         </p>
+                         <div className="mt-4 grid gap-4">
+                            {features.map((feature, index) => (
+                                <div key={index} className="flex items-center gap-3">
+                                    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                                    <span className="font-medium">{feature.text}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </AnimatedWrapper>
+            </div>
           </div>
         </section>
 
@@ -145,7 +157,7 @@ export default function Home() {
         <section className="py-12 lg:py-24 bg-secondary">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <AnimatedWrapper>
+              <AnimatedWrapper className="lg:col-span-1">
                 <div className="flex flex-col space-y-4">
                   <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
                     Focus in Under 10 Minutes
@@ -164,7 +176,7 @@ export default function Home() {
                   </div>
                 </div>
               </AnimatedWrapper>
-              <AnimatedWrapper delay="delay-200">
+              <AnimatedWrapper delay="delay-200" className="lg:col-span-1">
                 <Image
                   src="https://picsum.photos/600/400"
                   alt="Diagram of caffeine absorption"
