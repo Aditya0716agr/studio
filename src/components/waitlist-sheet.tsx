@@ -1,7 +1,8 @@
 
 "use client";
 
-import { useEffect, useRef, useState, useActionState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 import {
   Sheet,
@@ -52,6 +53,8 @@ export function WaitlistSheet({ children }: { children: React.ReactNode }) {
       });
       formRef.current?.reset();
       setOpen(false);
+    } else if (state.errors && !state.success) {
+      // Don't show a toast for validation errors, they are displayed inline
     } else if (state.message) {
       toast({
         title: "Something went wrong",
@@ -78,7 +81,7 @@ export function WaitlistSheet({ children }: { children: React.ReactNode }) {
             <Label htmlFor="name">Full Name</Label>
             <Input id="name" name="name" placeholder="John Doe" required />
             {state.errors?.name && (
-              <p className="text-sm text-destructive">{state.errors.name}</p>
+              <p className="text-sm text-destructive">{state.errors.name[0]}</p>
             )}
           </div>
           <div className="space-y-2">
@@ -91,10 +94,13 @@ export function WaitlistSheet({ children }: { children: React.ReactNode }) {
               required
             />
             {state.errors?.email && (
-              <p className="text-sm text-destructive">{state.errors.email}</p>
+              <p className="text-sm text-destructive">{state.errors.email[0]}</p>
             )}
           </div>
           <SubmitButton />
+          {state.message && !state.success && !state.errors && (
+            <p className="text-sm text-destructive">{state.message}</p>
+          )}
         </form>
         <SheetFooter>
           <SheetClose asChild>
