@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -9,7 +10,7 @@ import { WaitlistSheet } from "../waitlist-sheet";
 
 export default function Header() {
   return (
-    <header className="absolute top-0 left-0 right-0 py-6">
+    <header className="relative py-6">
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Logo />
         <div className="flex items-center gap-6 text-sm">
