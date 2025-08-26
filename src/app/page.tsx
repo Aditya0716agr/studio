@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Countdown } from '@/components/countdown';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import Logo from '@/components/logo';
 
 export default function Home() {
   const launchDate = new Date();
@@ -16,10 +17,7 @@ export default function Home() {
         <div className="container mx-auto px-6 py-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col space-y-6">
-              <div className="flex items-center gap-2 text-sm font-semibold tracking-wider uppercase text-muted-foreground">
-                <ArrowRight className="w-4 h-4" />
-                <span>Coming Soon</span>
-              </div>
+              <Logo />
               <h1 className="text-5xl md:text-6xl font-bold tracking-tighter !leading-tight">
                 Our new Product will be <span className="bg-foreground text-background px-2">launch soon.</span>
               </h1>

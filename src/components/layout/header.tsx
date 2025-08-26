@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 py-6">
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Logo />
+        <Logo className="scale-75" />
         <div className="flex items-center gap-6 text-sm">
           <Link href="mailto:hello@risegum.com" className="flex items-center gap-2 hover:text-primary transition-colors">
             <Mail className="w-4 h-4" />
