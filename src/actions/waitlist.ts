@@ -1,12 +1,46 @@
+
 "use server";
 
 import { z } from "zod";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import { JWT } from "google-auth-library";
 
 const waitlistSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   campus: z.string().optional(),
 });
+
+const serviceAccountAuth = new JWT({
+  email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+  key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+});
+
+const doc = new GoogleSpreadsheet(
+  process.env.GOOGLE_SHEETS_SPREADSHEET_ID!,
+  serviceAccountAuth
+);
+
+async functionappendToSheet(data: { name: string; email: string; campus?: string }) {
+  try {
+    await doc.loadInfo();
+    const sheet = doc.sheetsByTitle[process.env.GOOGLE_SHEETS_SHEET_NAME!];
+    if (!sheet) {
+      throw new Error(`Sheet "${process.env.GOOGLE_SHEETS_SHEET_NAME}" not found.`);
+    }
+    await sheet.addRow({
+      Name: data.name,
+      Email: data.email,
+      Campus: data.campus || "",
+      SubmittedAt: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("Error writing to Google Sheet:", error);
+    // Silently fail for the user, but log the error for the developer.
+    // You might want to add more robust error handling here.
+  }
+}
 
 export async function addToWaitlist(prevState: any, formData: FormData) {
   const validatedFields = waitlistSchema.safeParse({
@@ -24,12 +58,18 @@ export async function addToWaitlist(prevState: any, formData: FormData) {
 
   const { name, email, campus } = validatedFields.data;
 
-  // In a real application, you would save this to your database.
-  console.log("New waitlist submission:", { name, email, campus });
-
-  return {
-    message: `Thank you, ${name}! You've been added to the waitlist.`,
-    errors: null,
-    success: true,
-  };
+  try {
+    await appendToSheet({ name, email, campus });
+    return {
+      message: `Thank you, ${name}! You've been added to the waitlist.`,
+      errors: null,
+      success: true,
+    };
+  } catch (error) {
+    return {
+      message: "An unexpected error occurred. Please try again later.",
+      errors: null,
+      success: false,
+    };
+  }
 }
