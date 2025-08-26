@@ -49,12 +49,12 @@ export default function Home() {
             <div className="relative">
               <AnimatedWrapper>
                 <Image
-                  src="https://picsum.photos/seed/scenic/600/600"
-                  alt="Scenic landscape"
+                  src="https://storage.googleapis.com/altara-images/1720760417931_rUaYpA.png"
+                  alt="Rise Gum product packaging"
                   width={600}
                   height={600}
                   className="object-cover w-full h-auto rounded-lg"
-                  data-ai-hint="landscape morning"
+                  data-ai-hint="product packaging"
                   priority
                 />
               </AnimatedWrapper>
